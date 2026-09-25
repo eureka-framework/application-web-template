@@ -54,7 +54,7 @@
     "symfony/console": "^7.4.3||^8.1.7",
     "symfony/routing": "^7.4.3||^8.1.6",
     "symfony/finder": "^7.4.3||^8.1.7",
-    "twig/twig": "^3.29.0"
+    "twig/twig": "^3.30.0"
   },
 
   "require-dev": {
