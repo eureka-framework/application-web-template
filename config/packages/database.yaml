@@ -5,7 +5,7 @@ parameters:
     username: '%app.secret.database.username%'
     password: '%app.secret.database.password%'
     options:
-      !php/const \PDO::MYSQL_ATTR_INIT_COMMAND: "SET NAMES 'UTF8'"
+      !php/const \Pdo\Mysql::ATTR_INIT_COMMAND: "SET NAMES 'UTF8'"
 
 services:
   _defaults:

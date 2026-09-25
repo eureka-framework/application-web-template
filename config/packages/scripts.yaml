@@ -12,3 +12,4 @@ services:
         'importmap:require': '@Symfony\Component\AssetMapper\Command\ImportMapRequireCommand'
         'asset-map:compile': '@Symfony\Component\AssetMapper\Command\AssetMapperCompileCommand'
         'importmap:install': '@Symfony\Component\AssetMapper\Command\ImportMapInstallCommand'
+        'importmap:update':  '@Symfony\Component\AssetMapper\Command\ImportMapUpdateCommand'

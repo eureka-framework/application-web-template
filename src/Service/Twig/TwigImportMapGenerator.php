@@ -18,18 +18,26 @@ class TwigImportMapGenerator
     /** @var array{js: array<string, string>, css: array<string, string>} $imports */
     private array $imports;
 
+    /**
+     * @param string $name
+     * @param string $webAssetsPath
+     */
     public function __construct(
-        private readonly ManifestLoader $manifestLoader,
-        string $webAssetsPath,
         private readonly string $name,
+        string $webAssetsPath,
     ) {
         $entrypoints          = $this->loadEntrypoints($webAssetsPath, $name);
-        $this->imports['js']  = $this->loadImportMap($webAssetsPath, $entrypoints);
-        $this->imports['css'] = $this->manifestLoader->load($webAssetsPath, ['.css']);
+        $importmap            = $this->loadImportMap($webAssetsPath, $entrypoints);
+        $this->imports['js']  = $importmap['js'];
+        $this->imports['css'] = $importmap['css'];
     }
 
     public function importmap(): string
     {
+        if ($this->imports['js'] === []) {
+            return '';
+        }
+
         return '        <script type="importmap" data-turbo-track="reload">' . "\n"
             . \json_encode(['imports' => $this->imports['js']], \JSON_PRETTY_PRINT | \JSON_UNESCAPED_SLASHES)
             . '</script>' . "\n"
@@ -48,6 +56,10 @@ class TwigImportMapGenerator
 
     public function js(): string
     {
+        if ($this->imports['js'] === []) {
+            return '';
+        }
+
         $js = [];
         foreach ($this->imports['js'] as $import) {
             $js[] = '        <link rel="modulepreload" href="' . $import . '">';
@@ -86,7 +98,7 @@ class TwigImportMapGenerator
 
     /**
      * @param list<string> $entrypoints
-     * @return array<string, string>
+     * @return array<string, array<string, string>>
      */
     private function loadImportMap(string $webAssetsPath, array $entrypoints): array
     {
@@ -107,13 +119,9 @@ class TwigImportMapGenerator
             throw new TwigHelperException('Unable to decode importmap.json file!', 1103, $exception);
         }
 
-        $imports = [];
-        foreach ($entrypoints as $entrypoint) {
-            if (!isset($importmap[$entrypoint]) || $importmap[$entrypoint]['type'] !== 'js') {
-                continue;
-            }
-
-            $imports[$entrypoint] = $importmap[$entrypoint]['path'];
+        $imports = ['js' => [], 'css' => []];
+        foreach ($importmap as $entrypoint => ['path' => $path, 'type' => $type]) {
+            $imports[$type][$entrypoint] = $path;
         }
 
         return $imports;

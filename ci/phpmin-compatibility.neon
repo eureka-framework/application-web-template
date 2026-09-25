@@ -1,10 +1,10 @@
 includes:
   - ./../vendor/phpstan/phpstan-phpunit/extension.neon
   - ./../vendor/phpstan/phpstan-phpunit/rules.neon
-  - ./../vendor/phpstan/phpstan/conf/bleedingEdge.neon
+  - ./../vendor/phpstan/phpstan-deprecation-rules/rules.neon
 
 parameters:
-  phpVersion: 80300
+  phpVersion: 80500
   level: 0
   paths:
     - ./../bin/console

@@ -10,23 +10,25 @@
  *     be used as an "entrypoint" (and passed to the importmap() Twig function).
  *
  * The "importmap:require" command can be used to add new entries to this file.
+ *
+ * @return array<string, array{    // Import name as key, description of the imported file as value
+ *     path: string,               // Logical, relative or absolute path to the file
+ *     type?: 'js'|'css'|'json',   // Type of the file, defaults to 'js'
+ *     entrypoint?: bool,          // Whether the file is an entrypoint, for 'js' only
+ * }|array{
+ *     version: string,            // Version of the remote package
+ *     package_specifier?: string, // Remote "package-name/path" specifier, defaults to the import name
+ *     type?: 'js'|'css'|'json',
+ *     entrypoint?: bool,
+ * }>
  */
 return [
-    'app' => [
-        'path' => './assets/js/app.js',
-        'entrypoint' => true,
-    ],
-    '@fortawesome/fontawesome-free' => [
-        'version' => '5.15.4',
-    ],
-    '@fortawesome/fontawesome-free/css/fontawesome.min.css' => [
-        'version' => '5.15.4',
-        'type' => 'css',
-    ],
-    '@popperjs/core' => [
-        'version' => '2.11.8',
-    ],
-    '@hotwired/stimulus' => [
-        'version' => '3.2.2',
-    ],
+    'app' => ['path' => './assets/js/app.js', 'entrypoint' => true],
+    'app-css' => ['path' => './assets/theme/app.css', 'type' => 'css'],
+    'app-theme' => ['path' => './assets/theme/sketchy/bootstrap.min.css', 'type' => 'css'],
+    'bootstrap-icons/font/bootstrap-icons.min.css' => ['version' => '1.13.1', 'type' => 'css'],
+    'bootstrap/dist/js/bootstrap.bundle.min.js' => ['version' => '5.3.8'],
+    'choices.js' => ['version' => '11.2.4'],
+    'choices.js/public/assets/styles/choices.min.css' => ['version' => '11.2.4', 'type' => 'css'],
+    'htmx.org' => ['version' => '2.0.11'],
 ];
