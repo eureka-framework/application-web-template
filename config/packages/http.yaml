@@ -14,9 +14,6 @@ services:
   Nyholm\Psr7\:
     resource: '../../vendor/nyholm/psr7/src/*'
 
-  Psr\Http\Client\ClientInterface:
-    alias: Eureka\Component\Curl\HttpClient
-
   Psr\Http\Message\ResponseFactoryInterface:
     alias: Nyholm\Psr7\Factory\Psr17Factory
 

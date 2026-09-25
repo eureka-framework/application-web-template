@@ -21,7 +21,7 @@
 
   "autoload-dev": {
     "psr-4": {
-      "Application\\Tests\\Unit\\": "./tests/Unit"
+      "Application\\Tests": "./tests"
     }
   },
 
@@ -30,18 +30,18 @@
   },
 
   "require": {
-    "php": ">=8.3",
+    "php": ">=8.5",
     "ext-json": "*",
     "ext-session": "*",
 
     "eureka/component-console": "^7.0.0",
     "eureka/component-database": "^4.0.0",
     "eureka/component-deployer": "^4.0.0",
-    "eureka/component-orm": "^7.2.0",
+    "eureka/component-orm": "^7.2.1",
     "eureka/component-web": "^7.1.0",
     "eureka/kernel-http": "^7.0.0",
-    "eureka/kernel-console": "^7.0.0",
-    "lcobucci/clock": "^3.5.0",
+    "eureka/kernel-console": "^7.0.1",
+    "lcobucci/clock": "^3.6.0",
     "nyholm/psr7": "^1.8.2",
     "psr/log": "^3.0.2",
     "psr/clock": "^1.0.0",
@@ -49,22 +49,22 @@
     "psr/http-message": "^2.0.0",
     "psr/http-server-handler": "^1.0.2",
     "psr/http-server-middleware": "^1.0.2",
-    "symfony/asset-mapper": "^7.4.3",
-    "symfony/cache": "^7.4.3||^8.0.0",
-    "symfony/console": "^7.4.3||^8.0.0",
-    "symfony/routing": "^7.4.3||^8.0.0",
-    "symfony/finder": "^7.4.3||^8.0.0",
-    "twig/twig": "^3.22.2"
+    "symfony/asset-mapper": "^7.4.19||^8.1.7",
+    "symfony/cache": "^7.4.3||^8.1.7",
+    "symfony/console": "^7.4.3||^8.1.7",
+    "symfony/routing": "^7.4.3||^8.1.6",
+    "symfony/finder": "^7.4.3||^8.1.7",
+    "twig/twig": "^3.29.0"
   },
 
   "require-dev": {
-    "friendsofphp/php-cs-fixer": "^3.92.4",
-    "phpstan/phpstan": "^2.1.33",
-    "phpstan/phpstan-deprecation-rules": "^2.0.3",
-    "phpstan/phpstan-phpunit": "^2.0.11",
-    "phpstan/phpstan-strict-rules": "^2.0.7",
-    "phpunit/phpcov": "^11.0.3",
-    "phpunit/phpunit": "^12.5.4",
+    "friendsofphp/php-cs-fixer": "^3.95.27",
+    "phpstan/phpstan": "^2.2.16",
+    "phpstan/phpstan-deprecation-rules": "^2.0.5",
+    "phpstan/phpstan-phpunit": "^2.0.18",
+    "phpstan/phpstan-strict-rules": "^2.0.12",
+    "phpunit/phpcov": "^13.1.1",
+    "phpunit/phpunit": "^13.3.5",
     "shipmonk/composer-dependency-analyser": "^1.8.4"
   }
 }

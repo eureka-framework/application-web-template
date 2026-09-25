@@ -15,15 +15,9 @@ use Symfony\Component\Routing\Router;
 
 class TwigHelper
 {
-    /** @var string[]  */
+    /** @var array<string, string> $assetsManifest */
     private array $assetsManifest;
 
-    /**
-     * TwigHelper constructor.
-     *
-     * @param Router $router
-     * @param string $webAssetsPath
-     */
     public function __construct(
         private readonly Router $router,
         private readonly ManifestLoader $manifestLoader,
@@ -39,15 +33,14 @@ class TwigHelper
     {
         return [
             'importmap' => $this->importmap(...),
-            'path'      => $this->path(...),
-            'image'     => $this->image(...),
-            'asset'     => $this->asset(...),
+            'path'   => $this->path(...),
+            'image'  => $this->image(...),
         ];
     }
 
     public function importmap(string $name): string
     {
-        $importMapGenerator = new TwigImportMapGenerator($this->manifestLoader, $this->webAssetsPath, $name);
+        $importMapGenerator = new TwigImportMapGenerator($name, $this->webAssetsPath);
 
         return
             $importMapGenerator->css()
@@ -58,40 +51,28 @@ class TwigHelper
 
 
     /**
-     * @param  string $routeName
      * @param  array<string, string|int|float> $params
-     * @return string
      */
     public function path(string $routeName, array $params = []): string
     {
         return $this->router->generate($routeName, $params);
     }
 
-    /**
-     * @param string $filename
-     * @param string $baseUrl
-     * @return string
-     */
-    public function image(string $filename, string $baseUrl = 'images'): string
+    public function image(string $filename): string
     {
-        return $this->getRealAssetPath($filename, $baseUrl);
+        if (\preg_match('`([a-z]+)://(.+)`', $filename, $matches) > 0) {
+            return match ($matches[1]) {
+                'asset'  => $this->getRealAssetPath($matches[2], '/'),
+                'image'  => $this->getRealAssetPath($matches[2], '/img/'),
+                'upload' => '/upload/' . $matches[2],
+                default  => $filename,
+            };
+        }
+
+        return $this->getRealAssetPath($filename, '');
     }
 
-    /**
-     * @param string $filename
-     * @param string $baseUrl
-     * @return string
-     */
-    public function asset(string $filename, string $baseUrl = ''): string
-    {
-        return $this->getRealAssetPath($filename, $baseUrl);
-    }
 
-    /**
-     * @param string $filename
-     * @param string $baseUrl
-     * @return string
-     */
     private function getRealAssetPath(string $filename, string $baseUrl): string
     {
         $filePath = \trim($baseUrl, ' /') . '/' . \ltrim($filename, '/');

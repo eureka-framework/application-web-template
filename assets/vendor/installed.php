@@ -1,41 +1,53 @@
 <?php return array (
-  '@fortawesome/fontawesome-free' =>
+  'bootstrap-icons/font/bootstrap-icons.min.css' => 
   array (
-    'version' => '5.15.4',
-    'dependencies' =>
+    'version' => '1.13.1',
+    'dependencies' => 
     array (
     ),
-    'extraFiles' =>
+    'extraFiles' => 
+    array (
+      0 => '/font/fonts/bootstrap-icons.woff2',
+      1 => '/font/fonts/bootstrap-icons.woff',
+    ),
+  ),
+  'bootstrap/dist/js/bootstrap.bundle.min.js' => 
+  array (
+    'version' => '5.3.8',
+    'dependencies' => 
+    array (
+    ),
+    'extraFiles' => 
     array (
     ),
   ),
-  '@fortawesome/fontawesome-free/css/fontawesome.min.css' =>
+  'choices.js' => 
   array (
-    'version' => '5.15.4',
-    'dependencies' =>
+    'version' => '11.2.4',
+    'dependencies' => 
     array (
     ),
-    'extraFiles' =>
+    'extraFiles' => 
     array (
     ),
   ),
-  '@popperjs/core' =>
+  'choices.js/public/assets/styles/choices.min.css' => 
   array (
-    'version' => '2.11.8',
-    'dependencies' =>
+    'version' => '11.2.4',
+    'dependencies' => 
     array (
     ),
-    'extraFiles' =>
+    'extraFiles' => 
     array (
     ),
   ),
-  '@hotwired/stimulus' =>
+  'htmx.org' => 
   array (
-    'version' => '3.2.2',
-    'dependencies' =>
+    'version' => '2.0.11',
+    'dependencies' => 
     array (
     ),
-    'extraFiles' =>
+    'extraFiles' => 
     array (
     ),
   ),

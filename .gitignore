@@ -8,10 +8,8 @@ config/secrets/*
 !config/secrets/.gitkeep
 
 #~ Statics
-node_modules/
-public/assets
-yarn.lock
-yarn-error.log
+/assets/vendor/*
+/public/assets/*
 
 #~ Application
 var/*

@@ -15,16 +15,16 @@ use Symfony\Component\Routing\Router;
 use Twig;
 use Twig\Error\LoaderError;
 
-class TwigConfigurator
+readonly class TwigConfigurator
 {
     /**
      * @phpstan-param array<string, string> $twigPaths
      * @throws LoaderError
      */
     public function __construct(
-        private readonly Twig\Environment $twig,
-        private readonly TwigHelper $twigHelper,
-        private readonly array $twigPaths,
+        private Twig\Environment $twig,
+        private TwigHelper $twigHelper,
+        private array $twigPaths,
     ) {
         $this->configurePaths($twigPaths);
         $this->configureHelper();

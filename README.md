@@ -63,7 +63,7 @@ To perform a static analyze of your code (with phpstan, lvl 9 at default), you c
 make php/analyse
 ```
 
-To ensure you code still compatible with current supported version at Deezer and futures versions of php, you need to
+To ensure you code still compatible with current supported version and futures versions of php, you need to
 run the following commands (both are required for full support):
 
 Minimal supported version:
